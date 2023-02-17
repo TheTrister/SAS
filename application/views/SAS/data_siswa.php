@@ -37,7 +37,7 @@
 								<div class="">
 									<label class="text-dark" for="a"><i>Jurusan</i></label>
 									<div class="input-group">
-										<select name="jurusan" id="id_jurusan" class="btn btn-outline-dark shadow border-dark" style="width: 100px;">
+										<select name="jurusan" id="idjurusan" class="btn btn-outline-dark shadow border-dark" style="width: 100px;">
 											<option value="9999">Semua</option>
 											<?php if ($jurusan) { ?>
 												<?php foreach ($jurusan as $key) { ?>
@@ -51,7 +51,7 @@
 									<label class="text-dark" for="a"><i>Kelas</i></label>
 									<div class="input-group">
 										<div class="sopt2">
-											<select name="kelas" id="id_kelas" class="btn btn-outline-dark shadow border-dark" style="width: 100px;">
+											<select name="kelas" id="idkelas" class="btn btn-outline-dark shadow border-dark" style="width: 100px;">
 
 											</select>
 										</div>
@@ -153,7 +153,7 @@
 						</tr>
 						<tr>
 							<td>Jurusan</td>
-							<td><select name="jurusan" id="idjurusan" class="form-control">
+							<td><select name="jurusan" id="idjurusan_tambah" class="form-control">
 									<option></option>
 									<?php
 									foreach ($jurusan as $key) {
@@ -166,7 +166,7 @@
 						</tr>
 						<tr>
 							<td>Kelas</td>
-							<td><select name="kelas" id="idkelas" class="form-control">
+							<td><select name="kelas" id="idkelas_tambah" class="form-control">
 									<option></option>
 									<?php
 									foreach ($kelas as $key) {

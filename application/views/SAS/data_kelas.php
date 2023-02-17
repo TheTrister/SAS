@@ -15,7 +15,7 @@
             </div> -->
         </div><!-- /.container-fluid -->
     </section>
-    <?php echo $this->session->flashdata('pesan'); ?>
+    <?php echo $this->session->flashdata('pesan_kelas'); ?>
     <!-- Main content -->
     <section class="content">
         <div class="card-header border-white" style="background-color: #9ED2E9 ;">

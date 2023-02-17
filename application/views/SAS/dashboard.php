@@ -8,11 +8,13 @@
                     <h1><b>Dashboard </b> </h1>
                 </div>
                 <div class="col-sm-6">
+				    <form method="post" action="<?php echo base_url('SAS/index_filter') ?>" enctype="multipart/form-data">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">
-                            <input type="date" name="tanggal" id="id_tanggal" class="form-control">
+                            <input onchange="form.submit()" type="date" name="tanggal" id="id_tanggal" value="<?php if($tanggal) echo $tanggal?>" class="form-control">
                         </li>
                     </ol>
+                    </form>
                 </div>
             </div>
         </div>
@@ -28,14 +30,14 @@
                     <!-- small box -->
                     <div class="small-box" style="background-color: #9ED2E9 ;">
                         <div class="inner">
-                            <h3>1000</h3>
+                            <h3><?= $jumlah_siswa->jumlah?></h3>
 
                             <p>Jumlah Siswa</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-user" style="color: #000000;"></i>
                         </div>
-                        <a href="#" class="small-box-footer bg-white">
+                        <a href="<?php echo base_url() ?>Siswa/data_siswa" class="small-box-footer bg-white">
                             <font color="black">More info <i class="fas fa-chevron-right"></i></font>
                         </a>
                     </div>
@@ -45,14 +47,14 @@
                     <!-- small box -->
                     <div class="small-box" style="background-color: #9ED2E9 ;">
                         <div class="inner">
-                            <h3>852</h3>
+                            <h3><?= $jumlah_hadir->jumlah?></h3>
 
                             <p>Hadir</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-user" style="color: #000000;"></i>
                         </div>
-                        <a href="#" class="small-box-footer bg-white">
+                        <a href="<?php echo base_url() ?>Kehadiran/data_hadir" class="small-box-footer bg-white">
                             <font color="black">More info <i class="fas fa-chevron-right"></i></font>
                         </a>
                     </div>
@@ -62,14 +64,14 @@
                     <!-- small box -->
                     <div class="small-box" style="background-color: #9ED2E9 ;">
                         <div class="inner">
-                            <h3>71</h3>
+                            <h3><?= $jumlah_sakit->jumlah?></h3>
 
                             <p>Sakit</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-user" style="color: #000000;"></i>
                         </div>
-                        <a href="#" class="small-box-footer bg-white">
+                        <a href="<?php echo base_url() ?>Kehadiran/data_hadir" class="small-box-footer bg-white">
                             <font color="black">More info <i class="fas fa-chevron-right"></i></font>
                         </a>
                     </div>
@@ -79,14 +81,14 @@
                     <!-- small box -->
                     <div class="small-box" style="background-color: #9ED2E9 ;">
                         <div class="inner">
-                            <h3>42</h3>
+                            <h3><?= $jumlah_izin->jumlah?></h3>
 
                             <p>Izin</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-user" style="color: #000000;"></i>
                         </div>
-                        <a href="#" class="small-box-footer bg-white">
+                        <a href="<?php echo base_url() ?>Kehadiran/data_hadir" class="small-box-footer bg-white">
                             <font color="black">More info <i class="fas fa-chevron-right"></i></font>
                         </a>
                     </div>
@@ -95,7 +97,7 @@
                     <!-- small box -->
                     <div class="small-box" style="background-color: #9ED2E9 ;">
                         <div class="inner">
-                            <h3>35</h3>
+                            <h3><?= $jumlah_alpa->jumlah?></h3>
 
                             <p>Alpa</p>
                         </div>
@@ -103,7 +105,7 @@
                             <i class="fas fa-user" style="color: #000000;"></i>
 
                         </div>
-                        <a href="#" class="small-box-footer bg-white">
+                        <a href="<?php echo base_url() ?>Kehadiran/data_hadir" class="small-box-footer bg-white">
                             <font color="black">More info <i class="fas fa-chevron-right"></i></font>
                         </a>
                     </div>
@@ -112,14 +114,14 @@
                     <!-- small box -->
                     <div class="small-box" style="background-color: #9ED2E9 ;">
                         <div class="inner">
-                            <h3>55</h3>
+                            <h3><?= $jumlah_terlambat->jumlah?></h3>
 
                             <p>Terlambat</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-user" style="color: #000000;"></i>
                         </div>
-                        <a href="#" class="small-box-footer bg-white">
+                        <a href="<?php echo base_url() ?>Kehadiran/data_hadir" class="small-box-footer bg-white">
                             <font color="black">More info <i class="fas fa-chevron-right"></i></font>
                         </a>
                     </div>

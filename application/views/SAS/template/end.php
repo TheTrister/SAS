@@ -1,15 +1,17 @@
     <!-- jQuery -->
-    <script src="<?php echo base_url() ?>assets/plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="<?php echo base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
-    <script src="<?php echo base_url() ?>assets/plugins/chart.js/Chart.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/plugins/chart.js/Chart.min.js"></script>
     <!-- SweetAlert2 -->
-    <script src="<?php echo base_url() ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+    
+    <script src="<?php echo base_url() ?>/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 
-    <!-- <script src=".<?php echo base_url() ?>assets/plugins/daterangepicker/daterangepicker.js"></script> -->
+    <!-- <script src=".<?php echo base_url() ?>/assets/plugins/daterangepicker/daterangepicker.js"></script> -->
     <!-- AdminLTE App -->
-    <script src="<?php echo base_url() ?>assets/dist/js/adminlte.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/dist/js/adminlte.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -21,134 +23,33 @@
             $('#table').DataTable();
         });
     </script>
-    <script>
-        $(function() {
-            /* ChartJS
-             * -------
-             * Here we will create a few charts using ChartJS
-             */
-
-            //-------------
-            //- PIE CHART -
-            //-------------
-            // Get context with jQuery - using jQuery's .get() method.
-            var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-            var pieData = {
-                labels: [
-                    'aldi',
-                    'IE',
-                    'FireFox',
-                    'Safari',
-                    'Opera',
-                    'Navigator',
-                ],
-                datasets: [{
-                    data: [700, 500, 400, 600, 300, 100],
-                    backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-                }]
-            }
-            var pieOptions = {
-                maintainAspectRatio: true,
-                responsive: true,
-            }
-            //Create pie or douhnut chart
-            // You can switch between pie and douhnut using the method below.
-            new Chart(pieChartCanvas, {
-                type: 'pie',
-                data: pieData,
-                options: pieOptions
-            })
-
-            //-------------
-            //- BAR CHART -
-            //-------------
-            var barChartCanvas = $('#barChart').get(0).getContext('2d')
-            var barChartData = {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [{
-                    label: 'Digital Goods',
-                    backgroundColor: 'rgba(60,141,188,0.9)',
-                    borderColor: 'rgba(60,141,188,0.8)',
-                    pointRadius: false,
-                    pointColor: '#3b8bba',
-                    pointStrokeColor: 'rgba(60,141,188,1)',
-                    pointHighlightFill: '#fff',
-                    pointHighlightStroke: 'rgba(60,141,188,1)',
-                    data: [28, 48, 40, 19, 86, 27, 90]
-                }, ]
-            }
-            // var temp0 = areaChartData.datasets[0]
-            // var temp1 = areaChartData.datasets[1]
-            // barChartData.datasets[0] = temp1
-            // barChartData.datasets[1] = temp0
-
-            var barChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                datasetFill: false
-            }
-
-            new Chart(barChartCanvas, {
-                type: 'bar',
-                data: barChartData,
-                options: barChartOptions
-            })
-            //---------------------
-            //- STACKED BAR CHART -
-            //---------------------
-            var stackedBarChartCanvas = $('#stackedBarChart1').get(0).getContext('2d')
-            var stackedBarChartData = $.extend(true, {}, barChartData)
-
-            var stackedBarChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    xAxes: [{
-                        stacked: true,
-                        data: [28, 48, 40, 19, 86, 27, 90]
-                    }],
-                    yAxes: [{
-                        stacked: true
-
-                    }]
-                }
-            }
-
-            new Chart(stackedBarChartCanvas, {
-                type: 'bar',
-                data: stackedBarChartData,
-                options: stackedBarChartOptions
-            })
-
-
-        })
-    </script>
+    
     <script type="text/javascript">
         $(document).ready(function() {
 
-            $('#id_jurusan').change(function() {
-                var id = $(this).val();
-                $.ajax({
-                    url: "<?php echo site_url('SAS/get_kelas'); ?>",
-                    method: "POST",
-                    data: {
-                        id: id
-                    },
-                    async: true,
-                    dataType: 'json',
-                    success: function(data) {
+            // $('#id_jurusan').change(function() {
+            //     var id = $(this).val();
+            //     $.ajax({
+            //         url: "<?php echo site_url('SAS/get_kelas'); ?>",
+            //         method: "POST",
+            //         data: {
+            //             id: id
+            //         },
+            //         async: true,
+            //         dataType: 'json',
+            //         success: function(data) {
 
-                        var html = '';
-                        var i;
-                        for (i = 0; i < data.length; i++) {
-                            html += '<option value=' + data[i].ID + '>' + data[i].KELAS + '</option>';
-                        }
-                        $('#id_kelas').html(html);
+            //             var html = '';
+            //             var i;
+            //             for (i = 0; i < data.length; i++) {
+            //                 html += '<option value=' + data[i].ID + '>' + data[i].KELAS + '</option>';
+            //             }
+            //             $('#id_kelas').html(html);
 
-                    }
-                });
-                return false;
-            });
+            //         }
+            //     });
+            //     return false;
+            // });
 
             $('#idjurusan').change(function() {
                 var id = $(this).val();
@@ -197,6 +98,29 @@
                 });
                 return false;
             });
+            $('#idjurusan_tambah').change(function() {
+                var id = $(this).val();
+                $.ajax({
+                    url: "<?php echo site_url('SAS/get_kelas'); ?>",
+                    method: "POST",
+                    data: {
+                        id: id
+                    },
+                    async: true,
+                    dataType: 'json',
+                    success: function(data) {
+
+                        var html = '';
+                        var i;
+                        for (i = 0; i < data.length; i++) {
+                            html += '<option value=' + data[i].ID + '>' + data[i].KELAS + '</option>';
+                        }
+                        $('#idkelas_tambah').html(html);
+
+                    }
+                });
+                return false;
+            });
 
         });
     </script>
@@ -207,7 +131,7 @@
       $.ajax({
         type: "post",
         data:form,
-        url:'<?php echo base_url('SAS/tambah_data_siswa') ?>',
+        url:'<?php echo base_url('Siswa/tambah_data_siswa') ?>',
         dataType: 'json',
         cache:'false',
         contentType: false,
@@ -226,7 +150,7 @@
      $.ajax({
       type: "post",
       data:{'form_edit':$('#form_edit').serialize()},
-      url:'<?php echo base_url('SAS/edit_data_siswa') ?>',
+      url:'<?php echo base_url('Siswa/edit_data_siswa') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -242,7 +166,7 @@
      $.ajax({
       type: "post",
       data:{'form_delete':$('#form_delete').serialize()},
-      url:'<?php echo base_url('SAS/delete_data_siswa') ?>',
+      url:'<?php echo base_url('Siswa/delete_data_siswa') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -259,7 +183,7 @@
      $.ajax({
       type: "post",
       data:'id='+x,
-      url:'<?php echo base_url('SAS/ambil_detail_data_siswa') ?>',
+      url:'<?php echo base_url('Siswa/ambil_detail_data_siswa') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -276,7 +200,7 @@
      $.ajax({
       type: "post",
       data:'id='+x,
-      url:'<?php echo base_url('SAS/ambil_detail_data_siswa') ?>',
+      url:'<?php echo base_url('Siswa/ambil_detail_data_siswa') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -291,7 +215,7 @@
       $.ajax({
         type: "post",
         data:form,
-        url:'<?php echo base_url('SAS/tambah_data_user') ?>',
+        url:'<?php echo base_url('User/tambah_data_user') ?>',
         dataType: 'json',
         cache:'false',
         contentType: false,
@@ -310,7 +234,7 @@
      $.ajax({
       type: "post",
       data:{'form_edit':$('#form_edit').serialize()},
-      url:'<?php echo base_url('SAS/edit_data_user') ?>',
+      url:'<?php echo base_url('User/edit_data_user') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -326,7 +250,7 @@
      $.ajax({
       type: "post",
       data:{'form_delete':$('#form_delete').serialize()},
-      url:'<?php echo base_url('SAS/delete_data_user') ?>',
+      url:'<?php echo base_url('User/delete_data_user') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -342,7 +266,7 @@
      $.ajax({
       type: "post",
       data:'id='+x,
-      url:'<?php echo base_url('SAS/ambil_detail_data_user') ?>',
+      url:'<?php echo base_url('User/ambil_detail_data_user') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -356,7 +280,7 @@
      $.ajax({
       type: "post",
       data:'id='+x,
-      url:'<?php echo base_url('SAS/ambil_detail_data_user') ?>',
+      url:'<?php echo base_url('User/ambil_detail_data_user') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -370,7 +294,7 @@
       $.ajax({
         type: "post",
         data:form,
-        url:'<?php echo base_url('SAS/tambah_data_jurusan') ?>',
+        url:'<?php echo base_url('Jurusan/tambah_data_jurusan') ?>',
         dataType: 'json',
         cache:'false',
         contentType: false,
@@ -389,7 +313,7 @@
      $.ajax({
       type: "post",
       data:{'form_edit':$('#form_edit').serialize()},
-      url:'<?php echo base_url('SAS/edit_data_jurusan') ?>',
+      url:'<?php echo base_url('Jurusan/edit_data_jurusan') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -405,7 +329,7 @@
      $.ajax({
       type: "post",
       data:{'form_delete':$('#form_delete').serialize()},
-      url:'<?php echo base_url('SAS/delete_data_jurusan') ?>',
+      url:'<?php echo base_url('Jurusan/delete_data_jurusan') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -421,7 +345,7 @@
      $.ajax({
       type: "post",
       data:'id='+x,
-      url:'<?php echo base_url('SAS/ambil_detail_data_jurusan') ?>',
+      url:'<?php echo base_url('Jurusan/ambil_detail_data_jurusan') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -434,7 +358,7 @@
      $.ajax({
       type: "post",
       data:'id='+x,
-      url:'<?php echo base_url('SAS/ambil_detail_data_jurusan') ?>',
+      url:'<?php echo base_url('Jurusan/ambil_detail_data_jurusan') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -448,7 +372,7 @@
       $.ajax({
         type: "post",
         data:form,
-        url:'<?php echo base_url('SAS/tambah_data_kelas') ?>',
+        url:'<?php echo base_url('Kelas/tambah_data_kelas') ?>',
         dataType: 'json',
         cache:'false',
         contentType: false,
@@ -467,7 +391,7 @@
      $.ajax({
       type: "post",
       data:{'form_edit':$('#form_edit').serialize()},
-      url:'<?php echo base_url('SAS/edit_data_kelas') ?>',
+      url:'<?php echo base_url('Kelas/edit_data_kelas') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -483,7 +407,7 @@
      $.ajax({
       type: "post",
       data:{'form_delete':$('#form_delete').serialize()},
-      url:'<?php echo base_url('SAS/delete_data_kelas') ?>',
+      url:'<?php echo base_url('Kelas/delete_data_kelas') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -499,7 +423,7 @@
      $.ajax({
       type: "post",
       data:'id='+x,
-      url:'<?php echo base_url('SAS/ambil_detail_data_kelas') ?>',
+      url:'<?php echo base_url('Kelas/ambil_detail_data_kelas') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
@@ -513,11 +437,43 @@
      $.ajax({
       type: "post",
       data:'id='+x,
-      url:'<?php echo base_url('SAS/ambil_detail_data_kelas') ?>',
+      url:'<?php echo base_url('Kelas/ambil_detail_data_kelas') ?>',
       dataType: 'json',
       cache:'false',
       success: function(hasil){
        $('[name="id"]').val(hasil['ID']);
+     }
+   });
+   }
+
+   //DATA KEHADIRAN
+   $('#btn-edit-kehadiran').click(function(event){
+     $.ajax({
+      type: "post",
+      data:{'form_tambah':$('#form_tambah').serialize()},
+      url:'<?php echo base_url('Kehadiran/edit_data_pelanggaran') ?>',
+      dataType: 'json',
+      cache:'false',
+      success: function(hasil){
+
+       if (hasil.hasil) {
+        $('#tambah').hide('slow');
+        location.reload();
+      }
+    }
+  });
+   });
+   function edit_data_pelanggaran(x){
+     $.ajax({
+      type: "post",
+      data:'id='+x,
+      url:'<?php echo base_url('Kehadiran/ambil_data_pelanggaran') ?>',
+      dataType: 'json',
+      cache:'false',
+      success: function(hasil){
+       $('[name="id"]').val(hasil['ID']);
+       $('[name="kode_pelanggaran"]').val(hasil['PELANGGARAN']);
+       $('[name="keterangan_pelanggaran"]').val(hasil['KETERANGAN']);
      }
    });
    }

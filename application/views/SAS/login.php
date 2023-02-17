@@ -54,12 +54,12 @@
                                         </a>
                                         </center>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="post" action="<?php echo base_url()?>SAS/proses_login">
                                         <div class="form-group mt-5">
                                             <label>
-                                                Email
+                                                Username
                                             </label>
-                                            <input type="text" class="form-control form-control-user" id="email" name="email" style="border-radius: 25px;">
+                                            <input type="text" class="form-control form-control-user" id="username" name="username" style="border-radius: 25px;">
                                         </div>
                                         <div class="form-group mt-2">
                                             <label >

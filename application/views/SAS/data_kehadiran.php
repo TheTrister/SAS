@@ -80,7 +80,7 @@
                                 <label class="text-dark" for="b"><i>Tahun</i></label>
                                 <div class="input-group">
                                     <select name="year" id="id_tahun" class="btn btn-outline-dark shadow border-dark" style="width: 100px;">
-                                        <option value="20<?= $y ?>"><?= $y ?></option>
+                                        <option value="<?= $y ?>"><?= $y ?></option>
                                         <?php for ($i = date('Y'); $i >= date('Y') - 8; $i -= 1) { ?>
                                             <option value="<?= $i ?>"><?= $i ?></option>
                                         <?php } ?>
@@ -98,7 +98,7 @@
                                         <option value="<?php if ($this->session->userdata('jurusan_kehadiran')) $this->session->userdata('jurusan_kehadiran'); ?>"><?php if ($jurusan_filter) $jurusan_filter->JURUSAN ?></option>
                                         <?php if ($jurusan) { ?>
                                             <?php foreach ($jurusan as $key) { ?>
-                                                <option value="<?php echo $key->ID ?>"><?php echo $key->JURUSAN ?></option>
+                                                <option value="<?php echo $key->ID ?>" <?php if ($input_jurusanCtrl == $key->ID) { echo 'selected';}?>><?php echo $key->JURUSAN ?></option>
                                             <?php } ?>
                                         <?php } ?>
                                     </select>
@@ -112,7 +112,7 @@
                                         $input_jurusan = $this->session->userdata('jurusan_kehadiran');
                                         $kelas_filter = $this->db->query("SELECT * FROM tb_kelas WHERE ID_JURUSAN ='$input_jurusan' ")->row();
                                         ?>
-                                        <option value="<?php if ($this->session->userdata('kelas_kehadiran')) echo $this->session->userdata('kelas_kehadiran'); ?>"><?php if ($kelas_filter) $kelas_filter->KELAS ?></option>
+                                        <option value="<?php if ($this->session->userdata('kelas_kehadiran')) echo $this->session->userdata('kelas_kehadiran'); ?>"><?php if ($kelas_filter) echo $kelas_filter->KELAS ?></option>
 
                                     </select>
                                     <div class="input-group-append">
@@ -201,23 +201,44 @@
 
 
                                             if ($hadir->STATUS == 'H') {
-                                                echo '<th><a href="#tambah" data-toggle="modal" class="btn"  title="Keterangan Hadir" onclick="edit_data_pelanggaran('.$hadir->ID.')">' . $hadir->STATUS .' '.$hadir->PELANGGARAN.'</a></th>';
+                                                echo '<th>' . $hadir->STATUS .'-'.'AP'. '</th>';
+                                                // echo '<th><a href="#tambah" data-toggle="modal" class="btn"  title="Keterangan Hadir" onclick="edit_data_pelanggaran(' . $hadir->ID . ')">' .  $hadir->STATUS . ' ' . $hadir->PELANGGARAN . '</a></th>';
                                                 $jml_h[$siswa->NIS][$a_tgl] = 1;
                                                 $tgl_h[$a_tgl][$siswa->NIS] = 1;
                                             } elseif ($hadir->STATUS == 'T') {
                                                 echo '<th>' . $hadir->STATUS . '</th>';
                                                 $jml_t[$siswa->NIS][$a_tgl] = 1;
                                                 $tgl_t[$a_tgl][$siswa->NIS] = 1;
-                                            } elseif ($hadir->STATUS == 'I') {
-                                                echo '<th><a href="#edit" data-toggle="modal" class="btn"  title="Keterangan Ijin">' . $hadir->STATUS . '</a></th>';
+                                            } elseif ($hadir->STATUS == 'I0') {
+                                                echo '<th>' . 'I-BV' . '</th>';
+                                                // $jml_i[$siswa->NIS][$a_tgl] = 1;
+                                                // $tgl_i[$a_tgl][$siswa->NIS] = 1;
+                                            } elseif ($hadir->STATUS == 'I1') {
+                                                echo '<th>' . 'I' . '</th>';
                                                 $jml_i[$siswa->NIS][$a_tgl] = 1;
                                                 $tgl_i[$a_tgl][$siswa->NIS] = 1;
                                             } elseif ($hadir->STATUS == 'S') {
-                                                echo '<th><a href="#edit" data-toggle="modal" class="btn"  title="Keterangan Sakit">' . $hadir->STATUS . '</a></th>';
+                                                echo '<th>' . $hadir->STATUS . '</th>';
                                                 $jml_s[$siswa->NIS][$a_tgl] = 1;
                                                 $tgl_s[$a_tgl][$siswa->NIS] = 1;
                                             } elseif ($hadir->STATUS == 'A') {
                                                 echo '<th>' . $hadir->STATUS . '</th>';
+                                                $jml_a[$siswa->NIS][$a_tgl] = 1;
+                                                $tgl_a[$a_tgl][$siswa->NIS] = 1;
+                                            } elseif ($hadir->STATUS == 'P') {
+                                                $tes = $this->model_SAS->jmlGetPerDay_hadir($y . '-' . $m . '-' . $a_tgl, $siswa->NIS);
+                                                //TANPA HADIR        
+                                                if (count($tes) == 1) {
+                                                    echo '<th>' . $hadir->STATUS . '-' . 'AS' . '</th>';
+                                                } else {
+                                                    echo '<th>' . 'H' . '</th>';
+                                                    $jml_h[$siswa->NIS][$a_tgl] = 1;
+                                                    $tgl_h[$a_tgl][$siswa->NIS] = 1;
+                                                }
+                                                // echo '<th><a href="#tambah" data-toggle="modal" class="btn"  title="Keterangan Hadir" onclick="edit_data_pelanggaran(' . $hadir->ID . ')">' .  $hadir->STATUS . ' ' . $hadir->PELANGGARAN . '</a></th>';
+                                                
+                                            }else{
+                                                echo '<th>' . 'A' . '</th>';
                                                 $jml_a[$siswa->NIS][$a_tgl] = 1;
                                                 $tgl_a[$a_tgl][$siswa->NIS] = 1;
                                             }
@@ -338,7 +359,12 @@
                             <td></td>
                         </tr>
                     </tfoot>
-                </table>
+                </table><br><br>
+                <p>Keterangan : <br>
+                    H-AP = Siswa hanya absen pada pagi hari <br>
+                    H-AS = Siswa hanya absen pada sore hari <br>
+                    I-BV = Keterangan izin siswa belum terverifikasi <br>
+                </p>
             </div>
 
         </div>

@@ -25,8 +25,9 @@ class User extends CI_Controller {
 	{
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
+		$level = $this->input->post('level');
 
-		$query = $this->model_SAS->tambah_data_user($username,$password);
+		$query = $this->model_SAS->tambah_data_user($username,$password,$level);
 		$this->session->set_flashdata('pesan_user', '<div class="alert alert-success alert-dismissible" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				Data Berhasil disimpan
@@ -45,8 +46,9 @@ class User extends CI_Controller {
 		$id = $data['id'];
 		$username = $data['username'];
 		$password = $data['password'];
+		$level = $data['level'];
 
-		$query=$this->model_SAS->edit_data_user($id,$username,$password);
+		$query=$this->model_SAS->edit_data_user($id,$username,$password,$level);
 
 		$this->session->set_flashdata('pesan_user', '<div class="alert alert-success alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

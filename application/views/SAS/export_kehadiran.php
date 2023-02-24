@@ -79,23 +79,40 @@ header("Content-Disposition: attachment; filename= data_kehadiran " . $m . "/" .
 
 
                                 if ($hadir->STATUS == 'H') {
-                                    echo '<th>' . $hadir->STATUS .' '.$hadir->PELANGGARAN. '</th>';
+                                    echo '<th>' . $hadir->STATUS .'-'.'AP'. '</th>';
+                                    // echo '<th><a href="#tambah" data-toggle="modal" class="btn"  title="Keterangan Hadir" onclick="edit_data_pelanggaran(' . $hadir->ID . ')">' .  $hadir->STATUS . ' ' . $hadir->PELANGGARAN . '</a></th>';
                                     $jml_h[$siswa->NIS][$a_tgl] = 1;
                                     $tgl_h[$a_tgl][$siswa->NIS] = 1;
                                 } elseif ($hadir->STATUS == 'T') {
-                                    echo '<th>' . $hadir->STATUS .' '.$hadir->PELANGGARAN. '</th>';
+                                    echo '<th>' . $hadir->STATUS . '</th>';
                                     $jml_t[$siswa->NIS][$a_tgl] = 1;
                                     $tgl_t[$a_tgl][$siswa->NIS] = 1;
                                 } elseif ($hadir->STATUS == 'I') {
-                                    echo '<th>' . $hadir->STATUS .' '.$hadir->PELANGGARAN. '</th>';
+                                    echo '<th>' . $hadir->STATUS . '</th>';
                                     $jml_i[$siswa->NIS][$a_tgl] = 1;
                                     $tgl_i[$a_tgl][$siswa->NIS] = 1;
                                 } elseif ($hadir->STATUS == 'S') {
-                                    echo '<th>' . $hadir->STATUS .' '.$hadir->PELANGGARAN. '</th>';
+                                    echo '<th>' . $hadir->STATUS . '</th>';
                                     $jml_s[$siswa->NIS][$a_tgl] = 1;
                                     $tgl_s[$a_tgl][$siswa->NIS] = 1;
                                 } elseif ($hadir->STATUS == 'A') {
-                                    echo '<th>' . $hadir->STATUS .' '.$hadir->PELANGGARAN. '</th>';
+                                    echo '<th>' . $hadir->STATUS . '</th>';
+                                    $jml_a[$siswa->NIS][$a_tgl] = 1;
+                                    $tgl_a[$a_tgl][$siswa->NIS] = 1;
+                                } elseif ($hadir->STATUS == 'P') {
+                                    $tes = $this->model_SAS->jmlGetPerDay_hadir($y . '-' . $m . '-' . $a_tgl, $siswa->NIS);
+                                    //TANPA HADIR        
+                                    if (count($tes) == 1) {
+                                        echo '<th>' . $hadir->STATUS . '-' . 'AS' . '</th>';
+                                    } else {
+                                        echo '<th>' . 'H' . '</th>';
+                                        $jml_h[$siswa->NIS][$a_tgl] = 1;
+                                        $tgl_h[$a_tgl][$siswa->NIS] = 1;
+                                    }
+                                    // echo '<th><a href="#tambah" data-toggle="modal" class="btn"  title="Keterangan Hadir" onclick="edit_data_pelanggaran(' . $hadir->ID . ')">' .  $hadir->STATUS . ' ' . $hadir->PELANGGARAN . '</a></th>';
+                                    
+                                }else{
+                                    echo '<th>' . 'A' . '</th>';
                                     $jml_a[$siswa->NIS][$a_tgl] = 1;
                                     $tgl_a[$a_tgl][$siswa->NIS] = 1;
                                 }

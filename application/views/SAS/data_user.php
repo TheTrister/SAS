@@ -61,6 +61,9 @@
                                 <center>PASSWORD</center>
                             </th>
                             <th>
+                                <center>LEVEL</center>
+                            </th>
+                            <th>
                                 <center>AKSI</center>
                             </th>
                         </tr>
@@ -78,6 +81,9 @@
                                     </td>
                                     <td>
                                         <?php echo $dt->PASSWORD ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $dt->LEVEL ?>
                                     </td>
                                     <td>
                                         
@@ -121,6 +127,14 @@
                             <td>Password</td>
                             <td><input type="text" name="password" id="idpassword" value="" class="form-control" required></td>
                         </tr>
+                        <tr>
+                            <td>Level</td>
+                            <td><select name="level" id="id_level" class="form-control" required>
+                                <option value="superadmin">Super Admin</option>
+                                <option value="admin">Admin</option>
+                                <option value="walkel">Walikelas</option>
+                            </select></td>
+                        </tr>
                     </table>
                 </form>
             </div>
@@ -150,6 +164,14 @@
                         <tr>
                             <td>Password</td>
                             <td><input type="text" name="password" id="idpassword" value="" class="form-control" required></td>
+                        </tr>
+                        <tr>
+                            <td>Level</td>
+                            <td><select name="level" id="id_level" class="form-control" required>
+                                <option value="superadmin">Super Admin</option>
+                                <option value="admin">Admin</option>
+                                <option value="walkel">Walikelas</option>
+                            </select></td>
                         </tr>
                     </table>
                 </form>

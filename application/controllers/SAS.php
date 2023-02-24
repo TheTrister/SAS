@@ -17,7 +17,7 @@ class SAS extends CI_Controller {
 		$data['jumlah_siswa'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_data_siswa")->row();
 		$data['jumlah_hadir'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
 		$data['jumlah_sakit'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$tgl%' AND STATUS = 'S' ")->row();
-		$data['jumlah_izin'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$tgl%' AND STATUS = 'I' ")->row();
+		$data['jumlah_izin'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$tgl%' AND STATUS LIKE '%I%' ")->row();
 		$data['jumlah_alpa'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$tgl%' AND STATUS = 'A' ")->row();
 		$data['jumlah_terlambat'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$tgl%' AND STATUS = 'T' ")->row();
 
@@ -58,7 +58,7 @@ class SAS extends CI_Controller {
 		$data['jumlah_siswa'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_data_siswa")->row();
 		$data['jumlah_hadir'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
 		$data['jumlah_sakit'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'S' ")->row();
-		$data['jumlah_izin'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'I' ")->row();
+		$data['jumlah_izin'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS LIKE '%I%' ")->row();
 		$data['jumlah_alpa'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'A' ")->row();
 		$data['jumlah_terlambat'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'T' ")->row();
 
@@ -106,7 +106,7 @@ class SAS extends CI_Controller {
 				foreach ($login as $row)
 					$this->session->set_userdata('user',$row->USERNAME);
 					$this->session->set_userdata('level',$row->LEVEL);
-				if ($this->session->userdata('level')=="admin" || $this->session->userdata('level')=="owner") {
+				if ($this->session->userdata('level')=="admin" || $this->session->userdata('level')=="superadmin" || $this->session->userdata('level')=="walkel") {
 					// $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible" role="alert">
 					// 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					// 	login admin berhasil

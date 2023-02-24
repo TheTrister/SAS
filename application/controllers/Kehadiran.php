@@ -26,17 +26,24 @@ class Kehadiran extends CI_Controller {
 			$data_siswa = $this->model_SAS->getAll_data_filter($input_jurusan, $input_kelas);
 			$m = $input_month;
 			$y = $input_year;
+		}else if($input_month AND $input_year){
+			//$data_siswa = $this->model_SAS->getAll_data_perbulan($input_month, $input_year);
+			$m = $input_month;
+			$y = $input_year;
+			$data_siswa = $this->model_SAS->getAll_data();
 		}else{
 			// $data_hadir = $this->model_SAS->getAll_hadir($input_month, $input_year);
 			$m = date('m');
 		 	$y = date('y');
-			$data_siswa = $this->model_SAS->getAll_data($jurusan, $kelas);
+			$data_siswa = $this->model_SAS->getAll_data();
 		}
 
 		// $data['data_hadir'] = $data_hadir;
 		$data['data_siswa'] = $data_siswa;
 		$data['m'] = $m;
 		$data['y'] = $y;
+		$data['input_jurusanCtrl'] = $input_jurusan;
+		$data['input_kelasCtrl'] = $input_kelas;
 		$data['jurusan'] = $this->db->query("SELECT * FROM tb_jurusan")->result();
 
 		$this->load->view('SAS/template/begin');

@@ -273,6 +273,7 @@
        $('[name="id"]').val(hasil['ID']);
        $('[name="username"]').val(hasil['USERNAME']);
        $('[name="password"]').val(hasil['PASSWORD']);
+       $('[name="level"]').val(hasil['LEVEL']);
      }
    });
    }

@@ -69,7 +69,7 @@ class model_SAS extends CI_Model
     }
 
 //DATA USER
-    function tambah_data_user($username,$password)
+    function tambah_data_user($username,$password,$level)
     {
         $query = $this->db->query("INSERT INTO tb_user (
             USERNAME,
@@ -78,7 +78,7 @@ class model_SAS extends CI_Model
             ) VALUES(
             '$username',
             '$password',
-            'admin'
+            '$level'
             ) ");
     }
     function detail_data_user($id)
@@ -88,11 +88,12 @@ class model_SAS extends CI_Model
             return $query->row();
         }
     }
-    function edit_data_user($id,$username,$password)
+    function edit_data_user($id,$username,$password,$level)
     {
         $query = $this->db->query("UPDATE tb_user SET
             USERNAME = '$username',
-            PASSWORD = '$password'
+            PASSWORD = '$password',
+            LEVEL = '$level'
             WHERE ID = '$id'
         ");
     }
@@ -117,10 +118,16 @@ class model_SAS extends CI_Model
         // $this->db->query("SELECT * FROM tb_kehadiran WHERE ID_JURUSAN = '$filter_jurusan' AND ID_KELAS = '$filter_kelas' AND WAKTU LIKE'%$filter_tahun-$filter_bulan%' ")->result();
         $this->db->query("SELECT * FROM tb_data_siswa WHERE ID_JURUSAN = '1' AND ID_KELAS = '1'")->result();
     }
-    public function getAll_data($jurusan, $kelas)
+    // public function getAll_data_perbulan($m,$y)
+    // {
+    //     $this->db->from($this->tbl_siswa);
+    //     //$this->db->where("WAKTU LIKE'$m-$y' ");
+    //     return $this->db->get()->result();
+    // }   
+    public function getAll_data()
     {
         $this->db->from($this->tbl_siswa);
-
+        
         return $this->db->get()->result();
     }   
     public function getAll_hadir($m, $y)
@@ -134,8 +141,16 @@ class model_SAS extends CI_Model
         $tglAw = date("Y-m-d", strtotime($tgl)) . " " . "00:00:00";
         $tglAk = date("Y-m-d", strtotime($tgl)) . " " . "23:59:59";
         $this->db->from($this->tbl_hadir);
-        $this->db->where("WAKTU>='$tglAw' and WAKTU<='$tglAk' and NIS='$nis'");
+        $this->db->where("WAKTU>='$tglAw' and WAKTU<='$tglAk' and NIS='$nis' ORDER BY WAKTU DESC");
         return $this->db->get()->row();
+    }
+    public function jmlGetPerDay_hadir($tgl, $nis)
+    {
+        $tglAw = date("Y-m-d", strtotime($tgl)) . " " . "00:00:00";
+        $tglAk = date("Y-m-d", strtotime($tgl)) . " " . "23:59:59";
+        $this->db->from($this->tbl_hadir);
+        $this->db->where("WAKTU>='$tglAw' and WAKTU<='$tglAk' and NIS='$nis' ORDER BY WAKTU DESC");
+        return $this->db->get()->result();
     }
     public function ambil_data_pelanggaran($id)
     {

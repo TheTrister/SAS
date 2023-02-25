@@ -88,7 +88,11 @@ header("Content-Disposition: attachment; filename= data_kehadiran " . $m . "/" .
                                     $jml_t[$siswa->NIS][$a_tgl] = 1;
                                     $tgl_t[$a_tgl][$siswa->NIS] = 1;
                                 } elseif ($hadir->STATUS == 'I') {
-                                    echo '<th>' . $hadir->STATUS . '</th>';
+                                    echo '<th>' . 'I-BV' . '</th>';
+                                    // $jml_i[$siswa->NIS][$a_tgl] = 1;
+                                    // $tgl_i[$a_tgl][$siswa->NIS] = 1;
+                                } elseif ($hadir->STATUS == 'IV') {
+                                    echo '<th>' . 'I' . '</th>';
                                     $jml_i[$siswa->NIS][$a_tgl] = 1;
                                     $tgl_i[$a_tgl][$siswa->NIS] = 1;
                                 } elseif ($hadir->STATUS == 'S') {

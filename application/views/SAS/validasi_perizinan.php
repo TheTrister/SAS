@@ -80,7 +80,7 @@
                                 <label class="text-dark" for="b"><i>Tahun</i></label>
                                 <div class="input-group">
                                     <select name="year" id="id_tahun" class="btn btn-outline-dark shadow border-dark" style="width: 100px;">
-                                        <option value="20<?= $y ?>"><?= $y ?></option>
+                                        <option value="<?= $y ?>"><?= $y ?></option>
                                         <?php for ($i = date('Y'); $i >= date('Y') - 8; $i -= 1) { ?>
                                             <option value="<?= $i ?>"><?= $i ?></option>
                                         <?php } ?>
@@ -91,8 +91,9 @@
                                 <label class="text-dark" for="b"><i>Status</i></label>
                                 <div class="input-group">
                                     <select name="validasi" id="id_validasi" class="btn btn-outline-dark shadow border-dark" style="width: 100px;">
-                                        <option value="I0" <?php if ($input_status == 0) { echo 'selected';}?>>Belum Validasi</option>
-                                        <option value="I1" <?php if ($input_status == 1) { echo 'selected';}?>>Sudah Validasi</option>
+                                        <option value=""></option>
+                                        <option value="I" <?php if ($input_status == 'I') { echo 'selected';}?>>Belum Validasi</option>
+                                        <option value="IV" <?php if ($input_status == 'IV') { echo 'selected';}?>>Sudah Validasi</option>
                                     </select>
                                 </div>
                             </div>
@@ -169,8 +170,10 @@
                         <?php if (is_array($data_perizinan) || is_object($data_perizinan)) { ?>
                             <?php $i = 1; ?>
                             <?php foreach ($data_perizinan as $dt) { ?>
-                            <?php $perizinan = $this->db->query("SELECT * FROM tb_keterangan_izin WHERE ID_KEHADIRAN = '$dt->ID' ")->row() ?>
-                            <?php $nama = $this->db->query("SELECT * FROM tb_data_siswa WHERE NIS = '$dt->NIS' ")->row() ?>
+                            <?php $perizinan = $this->db->query("SELECT * FROM tb_keterangan_izin WHERE ID_KEHADIRAN = '$dt->ID' AND STATUS LIKE '%$filter_validasi%' ORDER BY STATUS ASC ")->row(); 
+                                // echo $this->db->last_query();
+                            ?>
+                            <?php $nama = $this->db->query("SELECT * FROM tb_data_siswa WHERE NIS = '$dt->NIS' ")->row(); ?>
                                 <tr>
                                     <td>
                                         <center><?php if($dt) echo $i++ ?></center>
@@ -187,12 +190,12 @@
                                     <td>
                                         <center>
                                             <?php 
-                                                if($dt->STATUS == 'I0')
+                                                if($perizinan->STATUS == 0)
                                                 {
                                             ?>
                                                 <button class="btn btn-danger btn-sm" disabled>Belum Validasi</button>
                                             <?php
-                                                } else if ($dt->STATUS == 'I1'){
+                                                } else if ($perizinan->STATUS == 01){
                                             ?>
                                                 <button class="btn btn-success btn-sm" disabled>Sudah Validasi</button>
                                             <?php
@@ -204,7 +207,7 @@
                                     <td>
                                         <center>
                                             <?php 
-                                                if($dt->STATUS == 'I0')
+                                                if($perizinan->STATUS == 0)
                                                 {
                                             ?>
                                                 <a href="<?php echo base_url()?>Perizinan/validasi/<?= $dt->ID?>" class="btn btn-warning">Validasi</a>

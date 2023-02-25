@@ -3,7 +3,7 @@
     <aside class="main-sidebar sidebar-light-primary elevation-4 ">
         <!-- Brand Logo -->
         <a href="<?php echo base_url() ?>SAS/index" class="brand-link border-dark" style="height: 55px">
-            <img src="<?php echo base_url() ?>assets/logo.png" alt="AdminLTE Logo" class="brand-image" style="width: 160px">
+            <img src="<?php echo base_url() ?>assets/LogoColor.png" alt="AdminLTE Logo" class="brand-image" style="width: 140px; margin-right: auto; margin-left: 45px;">
             <span class="brand-text font-weight-light" style="opacity: 0">.</span>
         </a>
 
@@ -80,7 +80,7 @@
     <aside class="main-sidebar sidebar-light-primary elevation-4 ">
         <!-- Brand Logo -->
         <a href="<?php echo base_url() ?>SAS/index" class="brand-link border-dark" style="height: 55px">
-            <img src="<?php echo base_url() ?>assets/logo.png" alt="AdminLTE Logo" class="brand-image" style="width: 160px">
+            <img src="<?php echo base_url() ?>assets/LogoColor.png" alt="AdminLTE Logo" class="brand-image" style="width: 140px; margin-right: auto; margin-left: 45px;">
             <span class="brand-text font-weight-light" style="opacity: 0">.</span>
         </a>
 
@@ -144,9 +144,9 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar main-sidebar-custom sidebar-light-primary elevation-4 ">
         <!-- Brand Logo -->
-        <a href="<?php echo base_url() ?>SAS/index" class="brand-link border-dark" style="height: 55px">
-            <img src="<?php echo base_url() ?>assets/logo.png" alt="AdminLTE Logo" class="brand-image" style="width: 160px">
-            <span class="brand-text font-weight-light" style="opacity: 0">.</span>
+        <a href="<?php echo base_url() ?>SAS/index" class="brand-link border-dark " style="height: 55px;  ">
+            <img src="<?php echo base_url() ?>assets/LogoColor.png" alt="AdminLTE Logo" class="brand-image" style="width: 140px; margin-right: auto; margin-left: 45px;">
+            <!-- <span class="brand-text font-weight-light" style="opacity: 0">.</span> -->
         </a>
 
         <!-- Sidebar -->

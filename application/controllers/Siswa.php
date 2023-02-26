@@ -61,8 +61,10 @@ class Siswa extends CI_Controller {
 		$nama = $this->input->post('nama');
 		$jurusan = $this->input->post('jurusan');
 		$kelas = $this->input->post('kelas');
+		$tgl = $this->input->post('tgl_lahir');
+		$email = $this->input->post('email');
 
-		$query = $this->model_SAS->tambah_data_siswa($nis,$nama,$jurusan,$kelas);
+		$query = $this->model_SAS->tambah_data_siswa($nis,$nama,$jurusan,$kelas,$tgl,$email);
 		$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				Data Berhasil disimpan
@@ -83,8 +85,10 @@ class Siswa extends CI_Controller {
 		$nama = $data['nama'];
 		$jurusan = $data['jurusan_edit'];
 		$kelas = $data['kelas_edit'];
+		$tgl = $data['tgl_lahir'];
+		$email = $data['email'];
 
-		$query=$this->model_SAS->edit_data_siswa($id,$nis,$nama,$jurusan,$kelas);
+		$query=$this->model_SAS->edit_data_siswa($id,$nis,$nama,$jurusan,$kelas,$tgl,$email);
 
 		$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

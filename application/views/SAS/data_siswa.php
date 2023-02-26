@@ -152,6 +152,10 @@
 							<td><input type="text" name="nama" id="idnama" value="" class="form-control" required></td>
 						</tr>
 						<tr>
+							<td>Tanggal Lahir</td>
+							<td><input type="date" name="tgl_lahir" id="id_tgl_lahir" value="" class="form-control" required></td>
+						</tr>
+						<tr>
 							<td>Jurusan</td>
 							<td><select name="jurusan" id="idjurusan_tambah" class="form-control">
 									<option></option>
@@ -176,6 +180,10 @@
 										</option>
 									<?php } ?>
 								</select></td>
+						</tr>
+						<tr>
+							<td>Email</td>
+							<td><input type="email" name="email" id="id_email" value="" class="form-control"></td>
 						</tr>
 
 					</table>
@@ -210,6 +218,10 @@
 							<td><input type="text" name="nama" id="idnama" value="" class="form-control" required></td>
 						</tr>
 						<tr>
+							<td>Tanggal Lahir</td>
+							<td><input type="date" name="tgl_lahir" id="id_tgl_lahir" value="" class="form-control" required></td>
+						</tr>
+						<tr>
 							<td>Jurusan</td>
 							<td><select name="jurusan_edit" id="idjurusan_edit" class="form-control">
 									<option></option>
@@ -233,6 +245,10 @@
 										</option>
 									<?php } ?>
 								</select></td>
+						</tr>
+						<tr>
+							<td>Email</td>
+							<td><input type="email" name="email" id="id_email" value="" class="form-control"></td>
 						</tr>
 
 					</table>

@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    
     <title>SAS Login</title>
+    <link rel="icon" type="image/x-icon" href="<?php echo base_url();?>/assets/LogoColor.png" />
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url('assets/Sbadmin2/'); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -50,7 +51,7 @@
                                     <div class="text-center">
                                         <center>
                                         <a class="logo">
-                                            <img src="<?= base_url('assets/Logo SAS1.png'); ?>" alt="Logo"  style=" width: 580px;">
+                                            <img src="<?= base_url('assets/LogoColor.png'); ?>" alt="Logo"  style=" width: 300px;">
                                         </a>
                                         </center>
                                     </div>

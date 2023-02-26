@@ -190,10 +190,12 @@
        $('[name="id"]').val(hasil['ID']);
        $('[name="nis"]').val(hasil['NIS']);
        $('[name="nama"]').val(hasil['NAMA']);
+       $('[name="tgl_lahir"]').val(hasil['TANGGAL_LAHIR']);
        $('[name="jurusan_edit"]').val(hasil['ID_JURUSAN']);
        $('[name="kelas_edit"]').val(hasil['ID_KELAS']);
        $('[name="password"]').val(hasil['PASSWORD']);
-     }
+       $('[name="email"]').val(hasil['EMAIL']);
+      }
    });
    }
     function get_id_delete(x){

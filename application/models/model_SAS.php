@@ -29,20 +29,24 @@ class model_SAS extends CI_Model
         return $query;
     }
 //DATA SISWA
-    function tambah_data_siswa($nis, $nama, $jurusan, $kelas)
+    function tambah_data_siswa($nis, $nama, $jurusan, $kelas, $tgl, $email)
     {
         $query = $this->db->query("INSERT INTO tb_data_siswa (
             NIS,
             NAMA,
+            TANGGAL_LAHIR,
             ID_JURUSAN,
             ID_KELAS,
-            PASSWORD
+            PASSWORD,
+            EMAIL
             ) VALUES(
             '$nis',
             '$nama',
+            '$tgl',
             '$jurusan',
             '$kelas',
-            '$nis'
+            '$nis',
+            '$email'
             ) ");
     }
     function detail_data_siswa($id)
@@ -52,14 +56,16 @@ class model_SAS extends CI_Model
             return $query->row();
         }
     }
-    function edit_data_siswa($id, $nis, $nama, $jurusan, $kelas)
+    function edit_data_siswa($id, $nis, $nama, $jurusan, $kelas, $tgl, $email)
     {
         $query = $this->db->query("UPDATE tb_data_siswa SET
             NIS = '$nis',
             NAMA = '$nama',
+            TANGGAL_LAHIR = '$tgl',
             ID_JURUSAN = '$jurusan',
             ID_KELAS = '$kelas',
-            PASSWORD = '$nis'
+            PASSWORD = '$nis',
+            EMAIL = '$email'
             WHERE ID = '$id'
         ");
     }
@@ -225,4 +231,21 @@ class model_SAS extends CI_Model
     {
         $query = $this->db->query("DELETE FROM tb_kelas WHERE ID ='$id' ");
     }
+//ANDROID
+public function login_andro($username){
+    $query = $this->db->query("SELECT * FROM tb_data_siswa WHERE NIS = '$username'");
+    if ($query->num_rows()==1) {
+        return $query->result();
+    }else{
+        return false;
+    }
+}
+public function cek_login_andro($username,$password){
+    $query = $this->db->query("SELECT * FROM tb_data_siswa WHERE NIS = '$username' AND PASSWORD = '$password'");
+    if ($query->num_rows()==1) {
+        return $query->result();
+    }else{
+        return false;
+    }
+}
 }

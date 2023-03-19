@@ -68,7 +68,7 @@
                         <?php if (is_array($data_kelas) || is_object($data_kelas)) { ?>
                             <?php $i = 1; ?>
                             <?php foreach ($data_kelas as $dt) { ?>
-                                <?php $jurusan = $this->db->query("SELECT * FROM tb_jurusan WHERE ID = '$dt->ID_JURUSAN' ")->row() ?>
+                                <?php $jurusan = $this->db->query("SELECT * FROM jurusans WHERE ID = '$dt->ID_JURUSAN' ")->row() ?>
                                 <tr>
                                     <td>
                                         <center><?php echo $i++ ?></center>
@@ -121,7 +121,7 @@
                             <td>Jurusan</td>
                             <td><select name="jurusan" id="idjurusan" class="form-control">
                                     <option></option>
-                                    <?php $jurusan =  $this->db->query("SELECT * FROM tb_jurusan")->result(); ?>
+                                    <?php $jurusan =  $this->db->query("SELECT * FROM jurusans")->result(); ?>
                                     <?php if ($jurusan) { ?>
                                         <?php foreach ($jurusan as $j) { ?>
                                             <option value="<?php echo $j->ID ?>"> <?php echo $j->JURUSAN ?> </option>
@@ -159,7 +159,7 @@
                             <td>Jurusan</td>
                             <td><select name="jurusan" id="idjurusan" class="form-control">
                                     <option></option>
-                                    <?php $jurusan =  $this->db->query("SELECT * FROM tb_jurusan")->result(); ?>
+                                    <?php $jurusan =  $this->db->query("SELECT * FROM jurusans")->result(); ?>
                                     <?php if ($jurusan) { ?>
                                         <?php foreach ($jurusan as $j) { ?>
                                             <option value="<?php echo $j->ID ?>"> <?php echo $j->JURUSAN ?> </option>

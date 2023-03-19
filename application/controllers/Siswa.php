@@ -7,6 +7,7 @@ class Siswa extends CI_Controller {
 		parent::__construct();
 		$this->load->model('model_SAS');
 		$this->load->library('session');
+		// $this->load->library('curl');
 			//Do your magic here
 	}
     function data_siswa()
@@ -14,17 +15,17 @@ class Siswa extends CI_Controller {
 		$jurusan = $this->input->post('jurusan');
 		$kelas = $this->input->post('kelas');
 		if($jurusan AND $kelas){
-			$data['data_siswa'] = $this->db->query("SELECT * FROM tb_data_siswa WHERE ID_KELAS = '$kelas' AND ID_JURUSAN = '$jurusan'  ")->result();
+			$data['data_siswa'] = $this->db->query("SELECT * FROM siswas WHERE ID_KELAS = '$kelas' AND ID_JURUSAN = '$jurusan'  ")->result();
 
 		}else if($jurusan == 9999)
 		{
-			$data['data_siswa'] = $this->db->query("SELECT * FROM tb_data_siswa GROUP BY NIS")->result();
+			$data['data_siswa'] = $this->db->query("SELECT * FROM siswas ")->result();
 		}else{
-			$data['data_siswa'] = $this->db->query("SELECT * FROM tb_data_siswa GROUP BY NIS")->result();
+			$data['data_siswa'] = $this->db->query("SELECT * FROM siswas")->result();
 		}
 		
-		$data['jurusan'] = $this->db->query("SELECT * FROM tb_jurusan")->result();
-		$data['kelas'] = $this->db->query("SELECT * FROM tb_kelas")->result();
+		$data['jurusan'] = $this->db->query("SELECT * FROM jurusans")->result();
+		$data['kelas'] = $this->db->query("SELECT * FROM kelas")->result();
 		$this->load->view('SAS/template/begin');
 		$this->load->view('SAS/template/header');
 		$this->load->view('SAS/template/sidenav');
@@ -36,7 +37,7 @@ class Siswa extends CI_Controller {
 	{
 		$jurusan = $this->input->post('jurusan');
 		$kelas = $this->input->post('kelas');
-		$data['data_siswa'] = $this->db->query("SELECT * FROM tb_data_siswa WHERE kelas = '$kelas' AND id_jurusan = '$jurusan'  ")->result();
+		$data['data_siswa'] = $this->db->query("SELECT * FROM siswas WHERE KELAS = '$kelas' AND ID_JURUSAN= '$jurusan'  ")->result();
 		$this->load->view('SAS/template/begin');
 		$this->load->view('SAS/template/header');
 		$this->load->view('SAS/template/sidenav');
@@ -47,7 +48,7 @@ class Siswa extends CI_Controller {
 	function viewKelasByJurusan($jurusan)
 	{
 		$jurusan = $jurusan;
-		$data['kelas'] = $this->db->query("SELECT * FROM tb_kelas WHERE id_jurusan = '$jurusan' ")->result();
+		$data['kelas'] = $this->db->query("SELECT * FROM kelas WHERE ID_JURUSAN = '$jurusan' ")->result();
 		$this->load->view('SAS/select_option_kelas');
 	}
 	function get_kelas(){
@@ -61,10 +62,10 @@ class Siswa extends CI_Controller {
 		$nama = $this->input->post('nama');
 		$jurusan = $this->input->post('jurusan');
 		$kelas = $this->input->post('kelas');
-		$tgl = $this->input->post('tgl_lahir');
+		
 		$email = $this->input->post('email');
 
-		$query = $this->model_SAS->tambah_data_siswa($nis,$nama,$jurusan,$kelas,$tgl,$email);
+		$query = $this->model_SAS->tambah_data_siswa($nis,$nama,$jurusan,$kelas,$email);
 		$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				Data Berhasil disimpan
@@ -85,10 +86,10 @@ class Siswa extends CI_Controller {
 		$nama = $data['nama'];
 		$jurusan = $data['jurusan_edit'];
 		$kelas = $data['kelas_edit'];
-		$tgl = $data['tgl_lahir'];
+		
 		$email = $data['email'];
 
-		$query=$this->model_SAS->edit_data_siswa($id,$nis,$nama,$jurusan,$kelas,$tgl,$email);
+		$query=$this->model_SAS->edit_data_siswa($id,$nis,$nama,$jurusan,$kelas,$email);
 
 		$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

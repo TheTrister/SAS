@@ -12,7 +12,7 @@ class User extends CI_Controller {
     //DATA USER
 	function data_user()
 	{
-		$data['user'] = $this->db->query("SELECT * FROM tb_user")->result();
+		$data['user'] = $this->db->query("SELECT * FROM users")->result();
 		//$data['jurusan'] = $this->db->query("SELECT * FROM tb_jurusan")->result();
 		$this->load->view('SAS/template/begin');
 		$this->load->view('SAS/template/header');

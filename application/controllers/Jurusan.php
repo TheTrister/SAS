@@ -11,7 +11,7 @@ class Jurusan extends CI_Controller {
 	}
     function data_jurusan()
 	{
-		$data['data_jurusan'] = $this->db->query("SELECT * FROM tb_jurusan")->result();
+		$data['data_jurusan'] = $this->db->query("SELECT * FROM jurusans")->result();
 		$this->load->view('SAS/template/begin');
 		$this->load->view('SAS/template/header');
 		$this->load->view('SAS/template/sidenav');

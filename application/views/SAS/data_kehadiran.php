@@ -93,7 +93,7 @@
                                     <select name="jurusan" id="idjurusan" class="btn btn-outline-dark shadow border-dark" style="width: 100px;">
                                         <?php
                                         $input_jurusan = $this->session->userdata('jurusan_kehadiran');
-                                        $jurusan_filter = $this->db->query("SELECT * FROM tb_jurusan WHERE ID ='$input_jurusan' ")->row();
+                                        $jurusan_filter = $this->db->query("SELECT * FROM jurusans WHERE ID ='$input_jurusan' ")->row();
                                         ?>
                                         <option value="<?php if ($this->session->userdata('jurusan_kehadiran')) $this->session->userdata('jurusan_kehadiran'); ?>"><?php if ($jurusan_filter) $jurusan_filter->JURUSAN ?></option>
                                         <?php if ($jurusan) { ?>
@@ -110,7 +110,7 @@
                                     <select name="kelas" id="idkelas" class="btn btn-outline-dark shadow border-dark" style="width: 100px;">
                                         <?php
                                         $input_jurusan = $this->session->userdata('jurusan_kehadiran');
-                                        $kelas_filter = $this->db->query("SELECT * FROM tb_kelas WHERE ID_JURUSAN ='$input_jurusan' ")->row();
+                                        $kelas_filter = $this->db->query("SELECT * FROM kelas WHERE ID_JURUSAN ='$input_jurusan' ")->row();
                                         ?>
                                         <option value="<?php if ($this->session->userdata('kelas_kehadiran')) echo $this->session->userdata('kelas_kehadiran'); ?>"><?php if ($kelas_filter) echo $kelas_filter->KELAS ?></option>
 
@@ -194,7 +194,13 @@
                                         // $jumlah_sakit = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE NIS = '$siswa->NIS' AND WAKTU LIKE'%$bulan%' AND STATUS = 'S' ")->row();
                                         // $jumlah_alpa = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE NIS = '$siswa->NIS' AND WAKTU LIKE'%$bulan%' AND STATUS = 'A' ")->row();
                                         if (empty($hadir)) {
-                                            echo "<th></th>";
+                                            if($a_tgl > date('d')){
+                                                echo '<th></th>';
+                                            }else{
+                                                echo '<th>' . 'A' . '</th>';
+                                                $jml_a[$siswa->NIS][$a_tgl] = 1;
+                                                $tgl_a[$a_tgl][$siswa->NIS] = 1;
+                                            }
                                         } else {
 
 
@@ -211,8 +217,8 @@
                                                 $tgl_t[$a_tgl][$siswa->NIS] = 1;
                                             } elseif ($hadir->STATUS == 'I') {
                                                 echo '<th>' . 'I-BV' . '</th>';
-                                                // $jml_i[$siswa->NIS][$a_tgl] = 1;
-                                                // $tgl_i[$a_tgl][$siswa->NIS] = 1;
+                                                $jml_i[$siswa->NIS][$a_tgl] = 1;
+                                                $tgl_i[$a_tgl][$siswa->NIS] = 1;
                                             } elseif ($hadir->STATUS == 'IV') {
                                                 echo '<th>' . 'I' . '</th>';
                                                 $jml_i[$siswa->NIS][$a_tgl] = 1;
@@ -361,9 +367,15 @@
                     </tfoot>
                 </table><br><br>
                 <p>Keterangan : <br>
+                    H    = Siswa yang absen pagi dan sore hari<br>
+                    I    = Siswa yang surat izinnya sudah di validasi oleh admin<br>
+                    S    = Siswa yang surat izin sakitnya sudah divalidasi oleh admin<br>
+                    A    = Siswa yang tidak memiliki keteragan pada hari tersebut<br>
+                    T    = Siswa yang absen pagi pada jam yang melebihi 07.00<br>
                     H-AP = Siswa hanya absen pada pagi hari <br>
                     H-AS = Siswa hanya absen pada sore hari <br>
                     I-BV = Keterangan izin siswa belum terverifikasi <br>
+                    S-BV = Keterangan izin sakit siswa belum terverifikasi <br>
                 </p>
             </div>
 

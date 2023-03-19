@@ -187,10 +187,9 @@
       dataType: 'json',
       cache:'false',
       success: function(hasil){
-       $('[name="id"]').val(hasil['ID']);
+       $('[name="id"]').val(hasil['id']);
        $('[name="nis"]').val(hasil['NIS']);
        $('[name="nama"]').val(hasil['NAMA']);
-       $('[name="tgl_lahir"]').val(hasil['TANGGAL_LAHIR']);
        $('[name="jurusan_edit"]').val(hasil['ID_JURUSAN']);
        $('[name="kelas_edit"]').val(hasil['ID_KELAS']);
        $('[name="password"]').val(hasil['PASSWORD']);
@@ -206,7 +205,7 @@
       dataType: 'json',
       cache:'false',
       success: function(hasil){
-       $('[name="id"]').val(hasil['ID']);
+       $('[name="id"]').val(hasil['id']);
      }
    });
    }
@@ -272,7 +271,7 @@
       dataType: 'json',
       cache:'false',
       success: function(hasil){
-       $('[name="id"]').val(hasil['ID']);
+       $('[name="id"]').val(hasil['id']);
        $('[name="username"]').val(hasil['USERNAME']);
        $('[name="password"]').val(hasil['PASSWORD']);
        $('[name="level"]').val(hasil['LEVEL']);
@@ -287,7 +286,7 @@
       dataType: 'json',
       cache:'false',
       success: function(hasil){
-       $('[name="id"]').val(hasil['ID']);
+       $('[name="id"]').val(hasil['id']);
      }
    });
    }

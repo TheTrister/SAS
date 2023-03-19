@@ -11,7 +11,7 @@ class Kelas extends CI_Controller {
 	}
     function data_kelas()
 	{
-		$data['data_kelas'] = $this->db->query("SELECT * FROM tb_kelas")->result();
+		$data['data_kelas'] = $this->db->query("SELECT * FROM kelas")->result();
 		//$data['jurusan'] = $this->db->query("SELECT * FROM tb_jurusan")->result();
 		$this->load->view('SAS/template/begin');
 		$this->load->view('SAS/template/header');

@@ -37,6 +37,7 @@ class Kehadiran extends CI_Controller {
 		 	$y = date('y');
 			$data_siswa = $this->model_SAS->getAll_data();
 		}
+		// echo $this->db->last_query();
 
 		// $data['data_hadir'] = $data_hadir;
 		$data['data_siswa'] = $data_siswa;
@@ -44,7 +45,7 @@ class Kehadiran extends CI_Controller {
 		$data['y'] = $y;
 		$data['input_jurusanCtrl'] = $input_jurusan;
 		$data['input_kelasCtrl'] = $input_kelas;
-		$data['jurusan'] = $this->db->query("SELECT * FROM tb_jurusan")->result();
+		$data['jurusan'] = $this->db->query("SELECT * FROM jurusans")->result();
 
 		$this->load->view('SAS/template/begin');
 		$this->load->view('SAS/template/header');

@@ -11,7 +11,7 @@ class Feedback extends CI_Controller {
 	}
     function feedback()
 	{
-		$data['feedback'] = $this->db->query("SELECT * FROM tb_feedback")->result();
+		$data['feedback'] = $this->db->query("SELECT * FROM feedback")->result();
 		$this->load->view('SAS/template/begin');
 		$this->load->view('SAS/template/header');
 		$this->load->view('SAS/template/sidenav');

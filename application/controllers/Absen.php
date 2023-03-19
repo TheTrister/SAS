@@ -44,8 +44,10 @@ class Absen extends CI_Controller {
     function absen_pagi()
     {
         $nis = $this->session->userdata('nis');
+        $kelas = $this->session->userdata('kelas');
+        $jurusan = $this->session->userdata('jurusan');
         $waktu = date("Y-m-d h:i:sa");
-        $this->db->query("INSERT INTO tb_kehadiran (NIS,WAKTU,STATUS) VALUES('$nis','$waktu','H') ");
+        $this->db->query("INSERT INTO kehadirans (NIS,WAKTU,STATUS,ID_KELAS,ID_JURUSAN) VALUES('$nis','$waktu','H','$kelas','$jurusan') ");
         echo "<script>
 			alert('Berhasil Absen');
 			document.location='index';
@@ -55,8 +57,10 @@ class Absen extends CI_Controller {
     function absen_sore()
     {
         $nis = $this->session->userdata('nis');
+		$kelas = $this->session->userdata('kelas');
+        $jurusan = $this->session->userdata('jurusan');
         $waktu = date("Y-m-d h:i:sa");
-        $this->db->query("INSERT INTO tb_kehadiran (NIS,WAKTU,STATUS) VALUES('$nis','$waktu','P') ");
+        $this->db->query("INSERT INTO kehadirans (NIS,WAKTU,STATUS,ID_KELAS,ID_JURUSAN) VALUES('$nis','$waktu','P','$kelas','$jurusan') ");
         echo "<script>
 			alert('Berhasil Absen');
 			document.location='index';

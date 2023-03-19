@@ -199,12 +199,33 @@
                             </a>
                         </li>
                          <li class="nav-item">
-                            <a href="<?php echo base_url() ?>Perizinan/perizinan" class="nav-link">
+                            <!-- <a href="<?php echo base_url() ?>Perizinan/perizinan" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>Perizinan</p>
+                            </a> -->
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Perizinan
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
                             </a>
-                        </li>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url() ?>Perizinan/perizinan_sakit" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Keterangan Sakit</p>
+                                    </a>
+                                </li>
 
+                                <li class="nav-item">
+                                    <a href="<?php echo base_url() ?>Perizinan/perizinan" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Keterangan Izin</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-cog"></i>

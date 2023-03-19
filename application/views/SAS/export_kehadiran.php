@@ -72,7 +72,13 @@ header("Content-Disposition: attachment; filename= data_kehadiran " . $m . "/" .
                         while ($a_tgl <= $jml_tgl) {
                             $hadir = $this->model_SAS->getPerDay_hadir($y . '-' . $m . '-' . $a_tgl, $siswa->NIS);
                             if (empty($hadir)) {
-                                echo "<th></th>";
+                                if($a_tgl > date('d')){
+                                    echo '<th></th>';
+                                }else{
+                                    echo '<th>' . 'A' . '</th>';
+                                    $jml_a[$siswa->NIS][$a_tgl] = 1;
+                                    $tgl_a[$a_tgl][$siswa->NIS] = 1;
+                                }
                             } else {
 
 
@@ -89,8 +95,8 @@ header("Content-Disposition: attachment; filename= data_kehadiran " . $m . "/" .
                                     $tgl_t[$a_tgl][$siswa->NIS] = 1;
                                 } elseif ($hadir->STATUS == 'I') {
                                     echo '<th>' . 'I-BV' . '</th>';
-                                    // $jml_i[$siswa->NIS][$a_tgl] = 1;
-                                    // $tgl_i[$a_tgl][$siswa->NIS] = 1;
+                                    $jml_i[$siswa->NIS][$a_tgl] = 1;
+                                    $tgl_i[$a_tgl][$siswa->NIS] = 1;
                                 } elseif ($hadir->STATUS == 'IV') {
                                     echo '<th>' . 'I' . '</th>';
                                     $jml_i[$siswa->NIS][$a_tgl] = 1;

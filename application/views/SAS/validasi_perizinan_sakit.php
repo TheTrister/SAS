@@ -167,9 +167,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (is_array($data_perizinan) || is_object($data_perizinan)) { ?>
+                        <?php if (is_array($data_perizinan_sakit) || is_object($data_perizinan_sakit)) { ?>
                             <?php $i = 1; ?>
-                            <?php foreach ($data_perizinan as $dt) { ?>
+                            <?php foreach ($data_perizinan_sakit as $dt) { ?>
                             <?php $perizinan = $this->db->query("SELECT * FROM keterangan__izins WHERE ID_KEHADIRAN = '$dt->ID_KETERANGAN' AND STATUS LIKE '%$filter_validasi%' ORDER BY STATUS ASC ")->row(); 
                                 // echo $this->db->last_query();
                             ?>
@@ -210,7 +210,7 @@
                                                 if($perizinan->STATUS == 0)
                                                 {
                                             ?>
-                                                <a href="<?php echo base_url()?>Perizinan/validasi/<?= $dt->ID_KETERANGAN?>" class="btn btn-warning">Validasi</a>
+                                                <a href="<?php echo base_url()?>Perizinan/validasi_sakit/<?= $dt->ID_KETERANGAN?>" class="btn btn-warning">Validasi</a>
                                             <?php
                                                 }
                                             ?>

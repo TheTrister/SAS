@@ -3,11 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class model_SAS extends CI_Model
 {
-    private $tbl_siswa = 'tb_data_siswa';
-    private $tbl_hadir = 'tb_kehadiran';
+    private $tbl_siswa = 'siswas';
+    private $tbl_hadir = 'kehadirans';
 
     public function login($username){
-		$query = $this->db->query("SELECT * FROM tb_user WHERE USERNAME = '$username'");
+		$query = $this->db->query("SELECT * FROM users WHERE USERNAME = '$username'");
 		if ($query->num_rows()==1) {
 			return $query->result();
 		}else{
@@ -15,7 +15,7 @@ class model_SAS extends CI_Model
 		}
 	}
     public function cek_login($username,$password){
-		$query = $this->db->query("SELECT * FROM tb_user WHERE USERNAME = '$username' AND PASSWORD = '$password'");
+		$query = $this->db->query("SELECT * FROM users WHERE USERNAME = '$username' AND PASSWORD = '$password'");
 		if ($query->num_rows()==1) {
 			return $query->result();
 		}else{
@@ -25,16 +25,15 @@ class model_SAS extends CI_Model
 
     function get_kelas($jurusan_id)
     {
-        $query = $this->db->query("SELECT * FROM tb_kelas WHERE ID_JURUSAN = '$jurusan_id' ");
+        $query = $this->db->query("SELECT * FROM kelas WHERE ID_JURUSAN = '$jurusan_id' ");
         return $query;
     }
 //DATA SISWA
-    function tambah_data_siswa($nis, $nama, $jurusan, $kelas, $tgl, $email)
+    function tambah_data_siswa($nis, $nama, $jurusan, $kelas, $email)
     {
-        $query = $this->db->query("INSERT INTO tb_data_siswa (
+        $query = $this->db->query("INSERT INTO siswas(
             NIS,
             NAMA,
-            TANGGAL_LAHIR,
             ID_JURUSAN,
             ID_KELAS,
             PASSWORD,
@@ -42,7 +41,6 @@ class model_SAS extends CI_Model
             ) VALUES(
             '$nis',
             '$nama',
-            '$tgl',
             '$jurusan',
             '$kelas',
             '$nis',
@@ -51,33 +49,33 @@ class model_SAS extends CI_Model
     }
     function detail_data_siswa($id)
     {
-        $query = $this->db->query("SELECT * FROM tb_data_siswa WHERE ID ='$id' ");
+        $query = $this->db->query("SELECT * FROM siswas WHERE id ='$id' ");
         if ($query) {
             return $query->row();
         }
     }
-    function edit_data_siswa($id, $nis, $nama, $jurusan, $kelas, $tgl, $email)
+    function edit_data_siswa($id, $nis, $nama, $jurusan, $kelas,  $email)
     {
-        $query = $this->db->query("UPDATE tb_data_siswa SET
+        $query = $this->db->query("UPDATE siswas SET
             NIS = '$nis',
             NAMA = '$nama',
-            TANGGAL_LAHIR = '$tgl',
+            
             ID_JURUSAN = '$jurusan',
             ID_KELAS = '$kelas',
             PASSWORD = '$nis',
             EMAIL = '$email'
-            WHERE ID = '$id'
+            WHERE id = '$id'
         ");
     }
     function delete_data_siswa($id)
     {
-        $query = $this->db->query("DELETE FROM tb_data_siswa WHERE ID ='$id' ");
+        $query = $this->db->query("DELETE FROM siswas WHERE id ='$id' ");
     }
 
 //DATA USER
     function tambah_data_user($username,$password,$level)
     {
-        $query = $this->db->query("INSERT INTO tb_user (
+        $query = $this->db->query("INSERT INTO users (
             USERNAME,
             PASSWORD,
             LEVEL
@@ -89,32 +87,32 @@ class model_SAS extends CI_Model
     }
     function detail_data_user($id)
     {
-        $query = $this->db->query("SELECT * FROM tb_user WHERE ID ='$id' ");
+        $query = $this->db->query("SELECT * FROM users WHERE id ='$id' ");
         if ($query) {
             return $query->row();
         }
     }
     function edit_data_user($id,$username,$password,$level)
     {
-        $query = $this->db->query("UPDATE tb_user SET
+        $query = $this->db->query("UPDATE users SET
             USERNAME = '$username',
             PASSWORD = '$password',
             LEVEL = '$level'
-            WHERE ID = '$id'
+            WHERE id = '$id'
         ");
     }
     function delete_data_user($id)
     {
-        $query = $this->db->query("DELETE FROM tb_user WHERE ID ='$id' ");
+        $query = $this->db->query("DELETE FROM users WHERE ID ='$id' ");
     }
 //DATA KEHADIRAN
     public function getAll_data_filter($filter_jurusan, $filter_kelas)
     {
-        // $this->db->query("SELECT * FROM tb_data_siswa WHERE ID_JURUSAN = '$filter_jurusan' AND ID_KELAS = '$filter_kelas' ")->result();
+        // $this->db->query("SELECT * FROM siswas WHERE ID_JURUSAN = '$filter_jurusan' AND ID_KELAS = '$filter_kelas' ")->result();
         // $this->db->query("SELECT * FROM tb_data_siswa")->result();
         $this->db->from($this->tbl_siswa);
-        $this->db->where('ID_JURUSAN', 1);
-        $this->db->where('ID_KELAS', 1);
+        $this->db->where('ID_JURUSAN', $filter_jurusan);
+        $this->db->where('ID_KELAS', $filter_kelas);
 
         return $this->db->get()->result();
     
@@ -122,7 +120,7 @@ class model_SAS extends CI_Model
     public function getAll_hadir_filter($filter_bulan,$filter_tahun,$filter_jurusan, $filter_kelas)
     {
         // $this->db->query("SELECT * FROM tb_kehadiran WHERE ID_JURUSAN = '$filter_jurusan' AND ID_KELAS = '$filter_kelas' AND WAKTU LIKE'%$filter_tahun-$filter_bulan%' ")->result();
-        $this->db->query("SELECT * FROM tb_data_siswa WHERE ID_JURUSAN = '1' AND ID_KELAS = '1'")->result();
+        $this->db->query("SELECT * FROM siswas WHERE ID_JURUSAN = '1' AND ID_KELAS = '1'")->result();
     }
     // public function getAll_data_perbulan($m,$y)
     // {
@@ -160,23 +158,23 @@ class model_SAS extends CI_Model
     }
     public function ambil_data_pelanggaran($id)
     {
-        $query = $this->db->query("SELECT * FROM tb_kehadiran WHERE ID ='$id' ");
+        $query = $this->db->query("SELECT * FROM kehadirans WHERE id ='$id' ");
         if ($query) {
             return $query->row();
         }
     }
     function edit_data_kehadiran($id,$kd_plg,$ket)
     {
-        $query = $this->db->query("UPDATE tb_kehadiran SET
+        $query = $this->db->query("UPDATE kehadirans SET
             PELANGGARAN = '$kd_plg',
             KETERANGAN = '$ket'
-            WHERE ID = '$id'
+            WHERE id = '$id'
         ");
     }
 //DATA JURUSAN
     function tambah_data_jurusan($jurusan)
     {
-        $query = $this->db->query("INSERT INTO tb_jurusan (
+        $query = $this->db->query("INSERT INTO jurusans (
             JURUSAN
             ) VALUES(
             '$jurusan'
@@ -184,27 +182,27 @@ class model_SAS extends CI_Model
     }
     function detail_data_jurusan($id)
     {
-        $query = $this->db->query("SELECT * FROM tb_jurusan WHERE ID ='$id' ");
+        $query = $this->db->query("SELECT * FROM jurusans WHERE ID ='$id' ");
         if ($query) {
             return $query->row();
         }
     }
     function edit_data_jurusan($id,$jurusan)
     {
-        $query = $this->db->query("UPDATE tb_jurusan SET
+        $query = $this->db->query("UPDATE jurusans SET
             JURUSAN = '$jurusan'
             WHERE ID = '$id'
         ");
     }
     function delete_data_jurusan($id)
     {
-        $query = $this->db->query("DELETE FROM tb_jurusan WHERE ID ='$id' ");
+        $query = $this->db->query("DELETE FROM jurusans WHERE ID ='$id' ");
     }
 
 //DATA KELAS
     function tambah_data_kelas($kelas,$jurusan)
     {
-        $query = $this->db->query("INSERT INTO tb_kelas (
+        $query = $this->db->query("INSERT INTO kelas (
             KELAS,
             ID_JURUSAN
             ) VALUES(
@@ -214,14 +212,14 @@ class model_SAS extends CI_Model
     }
     function detail_data_kelas($id)
     {
-        $query = $this->db->query("SELECT * FROM tb_kelas WHERE ID ='$id' ");
+        $query = $this->db->query("SELECT * FROM kelas WHERE ID ='$id' ");
         if ($query) {
             return $query->row();
         }
     }
     function edit_data_kelas($id,$kelas,$jurusan)
     {
-        $query = $this->db->query("UPDATE tb_kelas SET
+        $query = $this->db->query("UPDATE kelas SET
             KELAS = '$kelas',
             ID_JURUSAN = '$jurusan'
             WHERE ID = '$id'
@@ -229,11 +227,11 @@ class model_SAS extends CI_Model
     }
     function delete_data_kelas($id)
     {
-        $query = $this->db->query("DELETE FROM tb_kelas WHERE ID ='$id' ");
+        $query = $this->db->query("DELETE FROM kelas WHERE ID ='$id' ");
     }
 //ANDROID
 public function login_andro($username){
-    $query = $this->db->query("SELECT * FROM tb_data_siswa WHERE NIS = '$username'");
+    $query = $this->db->query("SELECT * FROM siswas WHERE NIS = '$username'");
     if ($query->num_rows()==1) {
         return $query->result();
     }else{
@@ -241,7 +239,7 @@ public function login_andro($username){
     }
 }
 public function cek_login_andro($username,$password){
-    $query = $this->db->query("SELECT * FROM tb_data_siswa WHERE NIS = '$username' AND PASSWORD = '$password'");
+    $query = $this->db->query("SELECT * FROM siswas WHERE NIS = '$username' AND PASSWORD = '$password'");
     if ($query->num_rows()==1) {
         return $query->result();
     }else{

@@ -101,8 +101,8 @@
 							<?php $i = 1; ?>
 							<?php foreach ($data_siswa as $dt) { ?>
 								<?php
-								$get_jurusan = $this->db->query("SELECT * FROM tb_jurusan WHERE ID ='$dt->ID_JURUSAN' ")->row();
-								$get_kelas = $this->db->query("SELECT * FROM tb_kelas WHERE ID ='$dt->ID_KELAS' ")->row();
+								$get_jurusan = $this->db->query("SELECT * FROM jurusans WHERE id ='$dt->ID_JURUSAN' ")->row();
+								$get_kelas = $this->db->query("SELECT * FROM kelas WHERE id ='$dt->ID_KELAS' ")->row();
 								?>
 								<tr class="text-center">
 									<td><?php echo $i++ ?></td>
@@ -112,8 +112,8 @@
 									<td><?php echo $get_kelas->KELAS ?></td>
 									<td><?php echo $dt->PASSWORD ?></td>
 									<td>
-										<a href="#edit" data-toggle="modal" class="btn" onclick="edit_data_siswa(<?php echo $dt->ID ?>)" title="Edit"><i class="fas fa-edit" style="color: #f0ad4e;"></i></a>
-										<a href="" data-toggle="modal" data-target="#hapus" class="btn" onclick="get_id_delete(<?php echo $dt->ID ?>)" title="Hapus"><i class="fas fa-trash" style="color: #d9534f;"></i></a>
+										<a href="#edit" data-toggle="modal" class="btn" onclick="edit_data_siswa(<?php echo $dt->id ?>)" title="Edit"><i class="fas fa-edit" style="color: #f0ad4e;"></i></a>
+										<a href="" data-toggle="modal" data-target="#hapus" class="btn" onclick="get_id_delete(<?php echo $dt->id ?>)" title="Hapus"><i class="fas fa-trash" style="color: #d9534f;"></i></a>
 									</td>
 								</tr>
 							<?php } ?>
@@ -151,10 +151,7 @@
 							<td>Nama</td>
 							<td><input type="text" name="nama" id="idnama" value="" class="form-control" required></td>
 						</tr>
-						<tr>
-							<td>Tanggal Lahir</td>
-							<td><input type="date" name="tgl_lahir" id="id_tgl_lahir" value="" class="form-control" required></td>
-						</tr>
+						
 						<tr>
 							<td>Jurusan</td>
 							<td><select name="jurusan" id="idjurusan_tambah" class="form-control">
@@ -217,10 +214,7 @@
 							<td>Nama</td>
 							<td><input type="text" name="nama" id="idnama" value="" class="form-control" required></td>
 						</tr>
-						<tr>
-							<td>Tanggal Lahir</td>
-							<td><input type="date" name="tgl_lahir" id="id_tgl_lahir" value="" class="form-control" required></td>
-						</tr>
+						
 						<tr>
 							<td>Jurusan</td>
 							<td><select name="jurusan_edit" id="idjurusan_edit" class="form-control">

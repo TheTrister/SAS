@@ -87,8 +87,8 @@
                                     </td>
                                     <td>
                                         
-                                    <a href="#edit" data-toggle="modal" class="btn" onclick="edit_data_user(<?php echo $dt->ID ?>)" title="Edit"><i class="fas fa-edit" style="color: #f0ad4e;"></i></a>
-                                    <a href="" data-toggle="modal" data-target="#hapus" class="btn" onclick="get_id_delete_user(<?php echo $dt->ID ?>)" title="Hapus" ><i class="fas fa-trash" style="color: #d9534f;"></i></a>
+                                    <a href="#edit" data-toggle="modal" class="btn" onclick="edit_data_user(<?php echo $dt->id ?>)" title="Edit"><i class="fas fa-edit" style="color: #f0ad4e;"></i></a>
+                                    <a href="" data-toggle="modal" data-target="#hapus" class="btn" onclick="get_id_delete_user(<?php echo $dt->id ?>)" title="Hapus" ><i class="fas fa-trash" style="color: #d9534f;"></i></a>
                                         
                                     </td>
                                 </tr>

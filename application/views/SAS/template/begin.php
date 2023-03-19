@@ -44,5 +44,5 @@
     <link rel="stylesheet" href="<?php echo base_url()?>/assets/dist/css/adminlte.min.css">
 </head>
 <style>
-  .main-sidebar { background-color: #61A2BE !important }
+  /* .main-sidebar { background-color: #A5CADA !important } */
 </style>

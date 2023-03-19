@@ -14,32 +14,32 @@ class SAS extends CI_Controller {
 	{
 		$tgl = date("Y-m-d");
 		
-		$data['jumlah_siswa'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_data_siswa")->row();
-		$data['jumlah_hadir'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
-		$data['jumlah_sakit'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$tgl%' AND STATUS = 'S' ")->row();
-		$data['jumlah_izin'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$tgl%' AND STATUS LIKE '%I%' ")->row();
-		$data['jumlah_alpa'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$tgl%' AND STATUS = 'A' ")->row();
-		$data['jumlah_terlambat'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$tgl%' AND STATUS = 'T' ")->row();
+		$data['jumlah_siswa'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM siswas")->row();
+		$data['jumlah_hadir'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
+		$data['jumlah_sakit'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE WAKTU LIKE'%$tgl%' AND STATUS = 'S' ")->row();
+		$data['jumlah_izin'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE WAKTU LIKE'%$tgl%' AND STATUS LIKE '%I%' ")->row();
+		$data['jumlah_alpa'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE WAKTU LIKE'%$tgl%' AND STATUS = 'A' ")->row();
+		$data['jumlah_terlambat'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE WAKTU LIKE'%$tgl%' AND STATUS = 'T' ")->row();
 
-		$data['pieRPL'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '1' AND WAKTU LIKE'%$tgl%' ")->row();
-		$data['pieMEKA'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '2' AND WAKTU LIKE'%$tgl%' ")->row();
-		$data['piePH'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '3' AND WAKTU LIKE'%$tgl%' ")->row();
-		$data['pieMM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '4' AND WAKTU LIKE'%$tgl%' ")->row();
-		$data['pieTKJ'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '5' AND WAKTU LIKE'%$tgl%' ")->row();
-		$data['pieDG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '6' AND WAKTU LIKE'%$tgl%' ")->row();
-		$data['pieLOG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '7' AND WAKTU LIKE'%$tgl%' ")->row();
-		$data['pieANIM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '8' AND WAKTU LIKE'%$tgl%' ")->row();
-		$data['piePD'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '9' AND WAKTU LIKE'%$tgl%' ")->row();
+		$data['pieRPL'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '1' AND WAKTU LIKE'%$tgl%' ")->row();
+		$data['pieMEKA'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '2' AND WAKTU LIKE'%$tgl%' ")->row();
+		$data['piePH'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '3' AND WAKTU LIKE'%$tgl%' ")->row();
+		$data['pieMM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '4' AND WAKTU LIKE'%$tgl%' ")->row();
+		$data['pieTKJ'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '5' AND WAKTU LIKE'%$tgl%' ")->row();
+		$data['pieDG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '6' AND WAKTU LIKE'%$tgl%' ")->row();
+		$data['pieLOG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '7' AND WAKTU LIKE'%$tgl%' ")->row();
+		$data['pieANIM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '8' AND WAKTU LIKE'%$tgl%' ")->row();
+		$data['piePD'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '9' AND WAKTU LIKE'%$tgl%' ")->row();
 			
-		$data['barRPL'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '1' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
-		$data['barMEKA'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '2' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
-		$data['barPH'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '3' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
-		$data['barMM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '4' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
-		$data['barTKJ'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '5' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
-		$data['barDG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '6' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
-		$data['barLOG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '7' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
-		$data['barANIM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '8' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
-		$data['barPD'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '9' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
+		$data['barRPL'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '1' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
+		$data['barMEKA'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '2' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
+		$data['barPH'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '3' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
+		$data['barMM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '4' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
+		$data['barTKJ'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '5' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
+		$data['barDG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '6' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
+		$data['barLOG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '7' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
+		$data['barANIM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '8' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
+		$data['barPD'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '9' AND WAKTU LIKE'%$tgl%' AND STATUS = 'H' ")->row();
 		
 		$data['tanggal'] = $tgl;
 		$this->load->view('SAS/template/begin');
@@ -55,32 +55,32 @@ class SAS extends CI_Controller {
 		$tgl = date("Y-m-d");
 		$filter_tanggal = $this->input->post('tanggal');
 		
-		$data['jumlah_siswa'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_data_siswa")->row();
-		$data['jumlah_hadir'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
-		$data['jumlah_sakit'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'S' ")->row();
-		$data['jumlah_izin'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS LIKE '%I%' ")->row();
-		$data['jumlah_alpa'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'A' ")->row();
-		$data['jumlah_terlambat'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'T' ")->row();
+		$data['jumlah_siswa'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM siswas")->row();
+		$data['jumlah_hadir'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
+		$data['jumlah_sakit'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'S' ")->row();
+		$data['jumlah_izin'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS LIKE '%I%' ")->row();
+		$data['jumlah_alpa'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'A' ")->row();
+		$data['jumlah_terlambat'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'T' ")->row();
 
-		$data['pieRPL'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '1' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
-		$data['pieMEKA'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '2' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
-		$data['piePH'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '3' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
-		$data['pieMM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '4' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
-		$data['pieTKJ'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '5' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
-		$data['pieDG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '6' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
-		$data['pieLOG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '7' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
-		$data['pieANIM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '8' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
-		$data['piePD'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '9' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
+		$data['pieRPL'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '1' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
+		$data['pieMEKA'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '2' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
+		$data['piePH'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '3' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
+		$data['pieMM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '4' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
+		$data['pieTKJ'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '5' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
+		$data['pieDG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '6' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
+		$data['pieLOG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '7' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
+		$data['pieANIM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '8' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
+		$data['piePD'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '9' AND WAKTU LIKE'%$filter_tanggal%' ")->row();
 			
-		$data['barRPL'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '1' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
-		$data['barMEKA'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '2' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
-		$data['barPH'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '3' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
-		$data['barMM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '4' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
-		$data['barTKJ'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '5' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
-		$data['barDG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '6' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
-		$data['barLOG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '7' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
-		$data['barANIM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '8' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
-		$data['barPD'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM tb_kehadiran WHERE ID_JURUSAN = '9' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
+		$data['barRPL'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '1' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
+		$data['barMEKA'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '2' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
+		$data['barPH'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '3' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
+		$data['barMM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '4' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
+		$data['barTKJ'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '5' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
+		$data['barDG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '6' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
+		$data['barLOG'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '7' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
+		$data['barANIM'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '8' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
+		$data['barPD'] = $this->db->query("SELECT COUNT(*) AS jumlah FROM kehadirans WHERE ID_JURUSAN = '9' AND WAKTU LIKE'%$filter_tanggal%' AND STATUS = 'H' ")->row();
 
 		$data['tanggal'] = $filter_tanggal;
 		$this->load->view('SAS/template/begin');
@@ -148,7 +148,7 @@ class SAS extends CI_Controller {
 	// 	$jurusan = $this->input->post('jurusan');
 	// 	$kelas = $this->input->post('kelas');
 	// 	if($jurusan AND $kelas){
-	// 		$data['data_siswa'] = $this->db->query("SELECT * FROM tb_data_siswa WHERE ID_KELAS = '$kelas' AND ID_JURUSAN = '$jurusan'  ")->result();
+	// 		$data['data_siswa'] = $this->db->query("SELECT * FROM siswas WHERE ID_KELAS = '$kelas' AND ID_JURUSAN = '$jurusan'  ")->result();
 
 	// 	}else if($jurusan == 9999)
 	// 	{
